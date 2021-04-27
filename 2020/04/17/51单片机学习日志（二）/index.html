@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>51单片机学习日志（二） | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="80C51单片机-LED定时1s闪烁 前言：上篇博文中我们用到的是定时器T0的工作方式一，本篇博文将用到T0的工作模式二来实现功能。  一、实验须知：（1）51单片机定时器T0&#x2F;T1工作方式2为：自动再装入的8位计数器。 （2）在方式2中，TLx作为8位计数器，THx负责存储计数初值。当计数溢出时，自动将THx中存储的时间常数送入   TLx，使TLx从这一初值开始重新计数。再装入后，THx的值不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51单片机学习日志（二）">
+<meta property="og:url" content="http://example.com/2020/04/17/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="80C51单片机-LED定时1s闪烁 前言：上篇博文中我们用到的是定时器T0的工作方式一，本篇博文将用到T0的工作模式二来实现功能。  一、实验须知：（1）51单片机定时器T0&#x2F;T1工作方式2为：自动再装入的8位计数器。 （2）在方式2中，TLx作为8位计数器，THx负责存储计数初值。当计数溢出时，自动将THx中存储的时间常数送入   TLx，使TLx从这一初值开始重新计数。再装入后，THx的值不">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200417173557.png">
+<meta property="article:published_time" content="2020-04-17T05:29:26.000Z">
+<meta property="article:modified_time" content="2020-04-21T13:51:22.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200417173557.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-51单片机学习日志（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/17/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%BA%8C%EF%BC%89/" class="article-date">
+  <time datetime="2020-04-17T05:29:26.000Z" itemprop="datePublished">2020-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      51单片机学习日志（二）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="80C51单片机-LED定时1s闪烁"><a href="#80C51单片机-LED定时1s闪烁" class="headerlink" title="80C51单片机-LED定时1s闪烁"></a>80C51单片机-LED定时1s闪烁</h1><blockquote>
+<p>前言：上篇博文中我们用到的是定时器T0的工作方式一，本篇博文将用到T0的工作模式二来实现功能。</p>
+</blockquote>
+<h2 id="一、实验须知："><a href="#一、实验须知：" class="headerlink" title="一、实验须知："></a>一、实验须知：</h2><p>（1）51单片机定时器T0/T1工作方式2为：自动再装入的8位计数器。</p>
+<p>（2）在方式2中，TLx作为8位计数器，THx负责存储计数初值。当计数溢出时，自动将THx中存储的时间常数送入   TLx，使TLx从这一初值开始重新计数。再装入后，THx的值不变。</p>
+<p>  (3）T0/T1工作模式二和与方式0和1工作原理大致相同，但工作模式二为8位自动重装计时器，它与工作方式0/1的最大区别是使用时不用二次给它赋初值。</p>
+<p>  (4)TLx与THx的初值的计算与方式0/1大致相同，12T机器周期，则12MHz的晶振输入，得到1 MHz的机器周期,进而得到8计数器每滴答一下就是1us时间。8位的定时器可以计数256个数，即256us = 0.256ms.如果我们要定时x时间，则x/1us 得到要计数多少个，我们几位N。则256-N就为我们的初值。在这个初值的基础上,计数N个后产生溢出，即向CPU发起中断。<br><br><br></p>
+<h2 id="二、实验过程："><a href="#二、实验过程：" class="headerlink" title="二、实验过程："></a>二、实验过程：</h2><ul>
+<li><strong>（1）程序需实现的功能：实现小灯1s亮、1s灭、依次循环往复。</strong></li>
+</ul>
+<ul>
+<li> <strong>(2)实验原理图：</strong><br><img src="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200417173557.png"><h3 id="（3）代码："><a href="#（3）代码：" class="headerlink" title="（3）代码："></a>（3）代码：</h3></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;reg51.h&gt;</span>  <span class="comment">/*51单片机头文件，加上该语句后，可直接使用单片机的特殊功能寄存器*/</span></span></span><br><span class="line">sbit led =P1^<span class="number">0</span>;<span class="comment">//将LED接在P1.0引脚</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TimerInit</span><span class="params">()</span><span class="comment">//配置定时器，定时0.25ms</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    TMOD|=<span class="number">0X02</span>;<span class="comment">//选择定时器T0工作模式2</span></span><br><span class="line">    TH0=<span class="number">0x6</span>;<span class="comment">//给TH0、TL0赋初值</span></span><br><span class="line">    TL0=<span class="number">0x6</span>;</span><br><span class="line">    ET0 =<span class="number">1</span>;<span class="comment">//打开定时器允许中断开关</span></span><br><span class="line">    EA =<span class="number">1</span>;<span class="comment">//打开总中断</span></span><br><span class="line">    TR0=<span class="number">1</span>;<span class="comment">//打开定时器</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span><span class="comment">//主函数</span></span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    TimerInit(); <span class="comment">//调用定时器</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Tmier</span><span class="params">()</span> interrupt 1 <span class="comment">//启动中断方式1</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> i=<span class="number">0</span>;<span class="comment">//定义一个静态局部变量</span></span><br><span class="line">    i++;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">4000</span>)<span class="comment">//循环4000达到定时1s的效果</span></span><br><span class="line">    &#123;</span><br><span class="line">        led =~led;<span class="comment">//led灯的状态取反</span></span><br><span class="line">        i =<span class="number">0</span>;<span class="comment">//重新给i赋值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/04/17/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%BA%8C%EF%BC%89/" data-id="cknzqyrzl00026cvfhk5jami8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/26/51%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          51单片机串行通信
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/11/51%E5%8D%95%E7%89%87%E6%9C%BA%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97%EF%BC%88%E4%B8%80%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">51单片机学习日志</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/27/%E8%AF%97%E6%96%87%E5%88%86%E4%BA%AB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/10/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89/">51单片机数码管（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/05/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/">51单片机数码管</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/51%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">51单片机串行通信</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

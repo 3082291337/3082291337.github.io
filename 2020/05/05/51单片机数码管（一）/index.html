@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>51单片机数码管 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言：数码管有动态显示与静态显示两种，本文用的是动态显示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="51单片机数码管">
+<meta property="og:url" content="http://example.com/2020/05/05/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言：数码管有动态显示与静态显示两种，本文用的是动态显示">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200505172016.png">
+<meta property="og:image" content="http://q8xe5o8a1.bkt.clouddn.com/%E5%AE%9E%E9%AA%8C1.png">
+<meta property="article:published_time" content="2020-05-05T05:34:26.000Z">
+<meta property="article:modified_time" content="2020-05-05T13:30:14.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200505172016.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-51单片机数码管（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/05/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time datetime="2020-05-05T05:34:26.000Z" itemprop="datePublished">2020-05-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      51单片机数码管
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>前言：数码管有动态显示与静态显示两种，本文用的是动态显示</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h1><h3 id="（一）需要用到的工具"><a href="#（一）需要用到的工具" class="headerlink" title="（一）需要用到的工具"></a>（一）需要用到的工具</h3><p>Proteus 8 professional<br>keil 5</p>
+<h3 id="（二）实验目标"><a href="#（二）实验目标" class="headerlink" title="（二）实验目标"></a>（二）实验目标</h3><p>控制四位数码管，显示1234</p>
+<h1 id="实验原理图"><a href="#实验原理图" class="headerlink" title="实验原理图"></a>实验原理图</h1><p><img src="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200505172016.png"></p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;reg51.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;intrins.h&gt;</span><span class="comment">//c51函数头文件</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> uchar unsigned char</span></span><br><span class="line">uchar code segtab[]= <span class="comment">//共阳极字形码表</span></span><br><span class="line">&#123;<span class="number">0xc0</span>,<span class="number">0xf9</span>,<span class="number">0xa4</span>,<span class="number">0xb0</span>,<span class="number">0x99</span>,<span class="number">0x92</span>,<span class="number">0x82</span>,<span class="number">0xf8</span>,<span class="number">0x80</span>,</span><br><span class="line"><span class="number">0x90</span>,<span class="number">0x88</span>,<span class="number">0x83</span>,<span class="number">0xc6</span>,<span class="number">0xa1</span>,<span class="number">0x86</span>,<span class="number">0x8e</span>,<span class="number">0x89</span>,<span class="number">0x8c</span>&#125;;</span><br><span class="line">uchar dbuf[<span class="number">4</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;<span class="comment">//显示缓存</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">delay</span><span class="params">(<span class="keyword">void</span>)</span><span class="comment">//延时函数，延时时间约为1ms</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	uchar i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">200</span>;i++);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">(<span class="keyword">void</span>)</span><span class="comment">//数码管动态显示程序，将显示缓存dbuf[]中的数据在四位数码管上显示一遍</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	uchar n,bsel;</span><br><span class="line">	bsel=<span class="number">0x01</span>;<span class="comment">//最初点亮的状态</span></span><br><span class="line">	<span class="keyword">for</span>(n=<span class="number">0</span>;n&lt;<span class="number">4</span>;n++)</span><br><span class="line">	&#123;</span><br><span class="line">		P2=bsel;<span class="comment">//位选口</span></span><br><span class="line">		P0=segtab[dbuf[n]];<span class="comment">//显示缓存单元的数据查出字形码表</span></span><br><span class="line">		bsel=_crol_(bsel,<span class="number">1</span>);<span class="comment">//准备显示下一位</span></span><br><span class="line">		delay();<span class="comment">//每位显示时长约为1ms</span></span><br><span class="line">		P0=<span class="number">0xff</span>;<span class="comment">//熄灭数码管，消影。因为延时时间太短，会出现鬼影状态。这一句必不可少</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)<span class="comment">//反复调用动态显示程序</span></span><br><span class="line">	&#123;</span><br><span class="line">		disp();<span class="comment">//调用动态显示程序</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="思路-用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。"><a href="#思路-用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。" class="headerlink" title="思路:用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。"></a>思路:用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。</h2><h2 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果:"></a>仿真结果:</h2><p><img src="http://q8xe5o8a1.bkt.clouddn.com/%E5%AE%9E%E9%AA%8C1.png"></p>
+<h1 id="实验小结"><a href="#实验小结" class="headerlink" title="实验小结:"></a>实验小结:</h1><p>运用动态扫描法会出现鬼影现象，所以代码最后的P0=0xff不能省，一定要注意。仿真原理图上省略链接了很多元器件。实际操作时要注意。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/05/05/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="cknzqyrzm00036cvfbr787kop" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/10/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          51单片机数码管（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/26/51%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">51单片机串行通信</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/04/27/%E8%AF%97%E6%96%87%E5%88%86%E4%BA%AB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/27/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/10/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%BA%8C%EF%BC%89/">51单片机数码管（二）</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/05/51%E5%8D%95%E7%89%87%E6%9C%BA%E6%95%B0%E7%A0%81%E7%AE%A1%EF%BC%88%E4%B8%80%EF%BC%89/">51单片机数码管</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/51%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1/">51单片机串行通信</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
