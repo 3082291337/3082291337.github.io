@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Cyin</title>
+  
+  
+  <link href="https://3082291337.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://3082291337.github.io/"/>
+  <updated>2020-04-12T06:14:24.000Z</updated>
+  <id>https://3082291337.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://3082291337.github.io/2021/04/27/shi-wen-fen-xiang/"/>
+    <id>https://3082291337.github.io/2021/04/27/shi-wen-fen-xiang/</id>
+    <published>2021-04-27T08:06:15.129Z</published>
+    <updated>2020-04-12T06:14:24.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;回眸&quot;&gt;&lt;a href=&quot;#回眸&quot; class=&quot;headerlink&quot; title=&quot;回眸&quot;&gt;&lt;/a&gt;回眸&lt;/h1&gt;&lt;p&gt;​        &lt;strong&gt;席慕蓉&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;前世，我频频回眸&lt;/p&gt;
+&lt;p&gt;挥别的手帕飘成一朵云&lt;/p&gt;
+&lt;p&gt;多少相思多少离愁&lt;/p&gt;
+&lt;p&gt;终成一道水痕送我远走&lt;/p&gt;
+&lt;p&gt;今生，&lt;/p&gt;
+&lt;p&gt;我寻觅前世失落的足迹&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://3082291337.github.io/2021/04/27/hello-world/"/>
+    <id>https://3082291337.github.io/2021/04/27/hello-world/</id>
+    <published>2021-04-27T07:26:03.823Z</published>
+    <updated>2021-04-27T07:26:03.824Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机数码管（二）</title>
+    <link href="https://3082291337.github.io/2020/05/10/51-dan-pian-ji-shu-ma-guan-er/"/>
+    <id>https://3082291337.github.io/2020/05/10/51-dan-pian-ji-shu-ma-guan-er/</id>
+    <published>2020-05-10T05:15:22.000Z</published>
+    <updated>2020-05-11T07:05:54.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前言：本文将上文用到的四位数数码管和之前学习的定时器结合，做一个实验。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机数码管</title>
+    <link href="https://3082291337.github.io/2020/05/05/51-dan-pian-ji-shu-ma-guan-yi/"/>
+    <id>https://3082291337.github.io/2020/05/05/51-dan-pian-ji-shu-ma-guan-yi/</id>
+    <published>2020-05-05T05:34:26.000Z</published>
+    <updated>2020-05-05T13:30:14.000Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前言：数码管有动态显示与静态显示两种，本文用的是动态显示&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机串行通信</title>
+    <link href="https://3082291337.github.io/2020/04/26/51-dan-pian-ji-chuan-kou-tong-xin/"/>
+    <id>https://3082291337.github.io/2020/04/26/51-dan-pian-ji-chuan-kou-tong-xin/</id>
+    <published>2020-04-26T03:02:33.000Z</published>
+    <updated>2020-12-18T08:33:25.804Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前言：数据通信是指计算机CPU与外部设备之间、计算机与计算机之间的信息交换称之为数据通信。基本通信方式有两种：并行通信和串行通信。本文讲的是串行通信。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;一、串行通信基础&quot;&gt;&lt;a href=&quot;#一、串行通信基础&quot; class=&quot;headerlink&quot; title=&quot;一、串行通信基础&quot;&gt;&lt;/a&gt;一、串行通信基础&lt;/h1&gt;&lt;h2 id=&quot;1-1-基本概念&quot;&gt;&lt;a href=&quot;#1-1-基本概念&quot; class=&quot;headerlink&quot; title=&quot;1.1 基本概念&quot;&gt;&lt;/a&gt;1.1 基本概念&lt;/h2&gt;&lt;p&gt;数据在单条一位宽的传输线上，一比特接一比特地按顺序传送的方式称为串行通信，它是一种设备与设备之间的数据交通方式。&lt;/p&gt;
+&lt;h2 id=&quot;1-2-特点及内部结构&quot;&gt;&lt;a href=&quot;#1-2-特点及内部结构&quot; class=&quot;headerlink&quot; title=&quot;1.2 特点及内部结构&quot;&gt;&lt;/a&gt;1.2 特点及内部结构&lt;/h2&gt;&lt;p&gt;（1）优点：节省传输线，这是显而易见的。尤其是在远程通信时，此特点尤为重要。这也是串行通信的主要优点。&lt;br&gt;     缺点：数据传送效率低。&lt;/p&gt;
+&lt;p&gt;（2）内部结构&lt;br&gt;&lt;img src=&quot;http://q8xe5o8a1.bkt.clouddn.com/v2-bf317fa170842a7135a8382db77f9740_r.jpg&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机学习日志（二）</title>
+    <link href="https://3082291337.github.io/2020/04/17/51-dan-pian-ji-xue-xi-ri-zhi-er/"/>
+    <id>https://3082291337.github.io/2020/04/17/51-dan-pian-ji-xue-xi-ri-zhi-er/</id>
+    <published>2020-04-17T05:29:26.000Z</published>
+    <updated>2020-04-21T13:51:22.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;80C51单片机-LED定时1s闪烁&quot;&gt;&lt;a href=&quot;#80C51单片机-LED定时1s闪烁&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>51单片机学习日志</title>
+    <link href="https://3082291337.github.io/2020/04/11/51-dan-pian-ji-xue-xi-ri-zhi-yi/"/>
+    <id>https://3082291337.github.io/2020/04/11/51-dan-pian-ji-xue-xi-ri-zhi-yi/</id>
+    <published>2020-04-11T02:22:26.000Z</published>
+    <updated>2020-05-22T06:33:08.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;一、51单片机定时器&quot;&gt;&lt;a href=&quot;#一、51单片机定时器&quot; class=&quot;headerlink&quot; title=&quot;一、51单片机定时器&quot;&gt;&lt;/a&gt;一、51单片机定时器&lt;/h1&gt;&lt;p&gt;1、&lt;strong&gt;基本概念&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;80C51有两个计数器T0和T1，每个计数器都是由两个8位的RAM 单元组成的，即每个计数器都是16 位的计数器，最大的计数容量是2的16次方=65536，记住是从0-65535。&lt;br&gt;定时器的本质也是计数器，只不过定时器的脉冲来自内部的晶振，而计数器的脉冲来自外部，当检测的脉冲的下降沿时，计数寄存器加一，直到溢出，然后单片机产生一个中断。所以需要定时时，先给计数寄存器设定一个初值，每有一个内部的脉冲时钟信号（相当与一段时间），计数器加一，直到溢出，一次定时完成。之后继续循环&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;/br&gt;&lt;/br&gt;&lt;br&gt;2、&lt;strong&gt;相关寄存器&lt;/strong&gt;：&lt;/p&gt;</summary>
+    
+    
+    
+    
+  </entry>
+  
+</feed>
