@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Cyin</title>
   
-  
+  <subtitle>Cyin</subtitle>
   <link href="https://3082291337.github.io/atom.xml" rel="self"/>
   
   <link href="https://3082291337.github.io/"/>
@@ -10,7 +10,7 @@
   <id>https://3082291337.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Cyin</name>
     
   </author>
   
