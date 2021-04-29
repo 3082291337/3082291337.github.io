@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="51单片机数码管, Cyin">
+    <meta name="keywords" content="51单片机学习日志, Cyin">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>51单片机数码管 | Cyin</title>
+    <title>51单片机学习日志 | Cyin</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -31,8 +31,8 @@
 
 <meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
+</head>
 
 
 
@@ -420,12 +420,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">51单片机数码管</h1>
+                    <h1 class="description center-align post-title">51单片机学习日志</h1>
                 </div>
             </div>
         </div>
@@ -553,28 +553,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-05
+                    2020-04-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-05
+                    2021-04-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    432
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -594,51 +594,119 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>前言：数码管有动态显示与静态显示两种，本文用的是动态显示</p>
+                <h1 id="一、51单片机定时器"><a href="#一、51单片机定时器" class="headerlink" title="一、51单片机定时器"></a>一、51单片机定时器</h1><p>1、<strong>基本概念</strong>：</p>
+<ul>
+<li><blockquote>
+<p><strong>80C51有两个计数器T0和T1，每个计数器都是由两个8位的RAM 单元组成的，即每个计数器都是16 位的计数器，最大的计数容量是2的16次方=65536，记住是从0-65535。<br>定时器的本质也是计数器，只不过定时器的脉冲来自内部的晶振，而计数器的脉冲来自外部，当检测的脉冲的下降沿时，计数寄存器加一，直到溢出，然后单片机产生一个中断。所以需要定时时，先给计数寄存器设定一个初值，每有一个内部的脉冲时钟信号（相当与一段时间），计数器加一，直到溢出，一次定时完成。之后继续循环</strong> </p>
 </blockquote>
+</li>
+</ul>
+<p><br><br><br>2、<strong>相关寄存器</strong>：</p>
 <span id="more"></span>
-<h1 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h1><h3 id="（一）需要用到的工具"><a href="#（一）需要用到的工具" class="headerlink" title="（一）需要用到的工具"></a>（一）需要用到的工具</h3><p>Proteus 8 professional<br>keil 5</p>
-<h3 id="（二）实验目标"><a href="#（二）实验目标" class="headerlink" title="（二）实验目标"></a>（二）实验目标</h3><p>控制四位数码管，显示1234</p>
-<h1 id="实验原理图"><a href="#实验原理图" class="headerlink" title="实验原理图"></a>实验原理图</h1><p><img src="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200505172016.png"></p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;reg51.h></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;intrins.h></span></span><span class="token comment" spellcheck="true">//c51函数头文件</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> uchar unsigned char</span>
-uchar code segtab<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span> <span class="token comment" spellcheck="true">//共阳极字形码表</span>
-<span class="token punctuation">{</span><span class="token number">0xc0</span><span class="token punctuation">,</span><span class="token number">0xf9</span><span class="token punctuation">,</span><span class="token number">0xa4</span><span class="token punctuation">,</span><span class="token number">0xb0</span><span class="token punctuation">,</span><span class="token number">0x99</span><span class="token punctuation">,</span><span class="token number">0x92</span><span class="token punctuation">,</span><span class="token number">0x82</span><span class="token punctuation">,</span><span class="token number">0xf8</span><span class="token punctuation">,</span><span class="token number">0x80</span><span class="token punctuation">,</span>
-<span class="token number">0x90</span><span class="token punctuation">,</span><span class="token number">0x88</span><span class="token punctuation">,</span><span class="token number">0x83</span><span class="token punctuation">,</span><span class="token number">0xc6</span><span class="token punctuation">,</span><span class="token number">0xa1</span><span class="token punctuation">,</span><span class="token number">0x86</span><span class="token punctuation">,</span><span class="token number">0x8e</span><span class="token punctuation">,</span><span class="token number">0x89</span><span class="token punctuation">,</span><span class="token number">0x8c</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-uchar dbuf<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//显示缓存</span>
+<ul>
+<li>1：<strong>定时/计数器方式寄存器TMOD（只能段寻址）</strong></li>
+</ul>
+<ul>
+<li><p>GATE—门控制位。</p>
+<p> GATE=0，定时器/计数器启动与停止仅受TCON寄存器中TRX(X=0,1)来控制。</p>
+<p> GATE=1，定时器计数器启动与停止由TCON寄存器中TRX(X=0,1)和外部中断引脚（INT0或INT1）上的电平状态来共同控制。</p>
+<p> C/T—定时器和计数器模式选择位。</p>
+<p> C/T=1，为计数器模式；</p>
+<p> C/T=0，为定时器模式。</p>
+</li>
+</ul>
+<ul>
+<li><strong>M0 M1–工作模式选择位</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>M1</th>
+<th>M0</th>
+<th>工作模式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>方式0，为13位定时器/计数器</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>方式1，为16位定时器/计数器</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>方式2，8位初值自动重装的8位定时器/计数器</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>方式3，仅适用于T0，分为两个8位计数器，T1停止工作</td>
+</tr>
+</tbody></table>
+<p><br><br></p>
+<ul>
+<li><p>2<br>： <strong>定时器/控制器控制寄存器TCON（可以位寻址）</strong></p>
+<p>  IT0：外部中断0触发方式控制位</p>
+<p>当IT0=0时，为电平触发方式（低电平有效）</p>
+<p>当IT0=1时，为边沿触发方式（下降沿有效）</p>
+<p>IE0：外部中断0中断请求标志位 （硬件自动完成）</p>
+<p>IT1：外部中断1触发方式控制位（同IT0）</p>
+<p>IE1：外部中断1中断请求标志位 （同IE0）</p>
+<p>  TF0：定时/计数器T0溢出中断请求标志位</p>
+<p>TF1：定时/计数器T1溢出中断请求标志位</p>
+</li>
+</ul>
+<p>TR1：定时器1运行控制位。</p>
+<p>由软件清0关闭定时器1。当GATE=1，且INIT为高电平时，TR1置1启动 定时器1；当GATE=0时，TR1置1启动定时器1。<br>TR0—定时器0运行控制位，其功能及操作方法同TR1。<br><br><br><br><br></p>
+<h2 id="80C51单片机-LED定时1s交替闪烁"><a href="#80C51单片机-LED定时1s交替闪烁" class="headerlink" title="80C51单片机-LED定时1s交替闪烁"></a>80C51单片机-LED定时1s交替闪烁</h2><ul>
+<li><p><em>定时之前我们需要知道定时器的使用方法以及如何计算出我们需要定时时间的参数。</em></p>
+<p>1 、<strong>定时器的使用方法</strong>：</p>
+<p>  (1)：对TMOD复制，以确定T0和T1的工作方式</p>
+<p>  (2)：计算初值，并将其写入TH0、TL0或TH1、TL1。</p>
+<p>  (3)：中断方式是，打开定时器中断（ET0/ET1）及总中断EA。</p>
+<p>  (4)：使TR0或TR1置位，启动定时。</p>
+<p> 2：<strong>TH0  TLO  初值计算方法</strong><br> ：<strong>12T机器周期，则12MHz的晶振输入，得到1 MHz的机器周期,进而得到1 6计数器每滴答一- 下就是1us时间。16位的最多计数到65535,然后再计数一个产生溢出， 此时向CPU发起定时器中断。则1 6位的定时器可以计数65536个数，即65536us = 65. 536ms.如果我们要定时x时间，则x/1us 得到要计数多少个，我们几位N。则65536 -N就为我们的初值。在这个初值的基础上,计数N个后产生溢出，即向CPU发起中断。THO TL0分别为8位,则(65536-N) /256赋值给TH0，(65536-N) % 256求余赋值给TL0。</strong></p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://www.elecfans.com/dianzichangshi/20171109577456.html">参考链接</a></p>
+<h3 id="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"><a href="#程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。" class="headerlink" title="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"></a><strong>程序功能</strong>：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。</h3><br>
 
-<span class="token keyword">void</span> <span class="token function">delay</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//延时函数，延时时间约为1ms</span>
+<h3 id="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"><a href="#逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。" class="headerlink" title="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"></a><strong>逻辑思路</strong>：通过定时1ms，循环1000次从而达到定时1s的功能。</h3><p><br><br><br></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a><strong>代码</strong>：</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;reg51.h></span></span>
+sbit led <span class="token operator">=</span>P1<span class="token operator">^</span><span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//定时1ms</span>
 <span class="token punctuation">{</span>
-    uchar i<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">200</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    TMOD<span class="token operator">|</span><span class="token operator">=</span><span class="token number">0X01</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//选择T0工作方式</span>
+    TH0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">256</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//给TH0、TL0赋初值</span>
+    TL0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">256</span><span class="token punctuation">;</span>
+    ET0 <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    EA <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    TR0<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">void</span> <span class="token function">disp</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//数码管动态显示程序，将显示缓存dbuf[]中的数据在四位数码管上显示一遍</span>
-<span class="token punctuation">{</span>
-    uchar n<span class="token punctuation">,</span>bsel<span class="token punctuation">;</span>
-    bsel<span class="token operator">=</span><span class="token number">0x01</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//最初点亮的状态</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span>n<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>n<span class="token operator">&lt;</span><span class="token number">4</span><span class="token punctuation">;</span>n<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        P2<span class="token operator">=</span>bsel<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//位选口</span>
-        P0<span class="token operator">=</span>segtab<span class="token punctuation">[</span>dbuf<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//显示缓存单元的数据查出字形码表</span>
-        bsel<span class="token operator">=</span><span class="token function">_crol_</span><span class="token punctuation">(</span>bsel<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//准备显示下一位</span>
-        <span class="token function">delay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//每位显示时长约为1ms</span>
-        P0<span class="token operator">=</span><span class="token number">0xff</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//熄灭数码管，消影。因为延时时间太短，会出现鬼影状态。这一句必不可少</span>
-    <span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  
+    <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">Tmier</span><span class="token punctuation">(</span><span class="token punctuation">)</span> interrupt <span class="token number">1</span><span class="token comment" spellcheck="true">//中断</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//反复调用动态显示程序</span>
+    <span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    TH0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">256</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//重新给TH0、TL0赋初值</span>
+    TL0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">256</span><span class="token punctuation">;</span>
+    i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//循环1000次达到定时1s的效果</span>
     <span class="token punctuation">{</span>
-        <span class="token function">disp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用动态显示程序</span>
+        led <span class="token operator">=</span><span class="token operator">~</span>led<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//灯的状态取反</span>
+        i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="思路-用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。"><a href="#思路-用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。" class="headerlink" title="思路:用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。"></a>思路:用动态扫描显示法，即每次只有一个数码管被点亮，由于人眼有视觉暂留现象，只要以较快的的速度令4个数码挂依次轮流点亮，看起来会觉得四个数码管是同时被点亮了。</h2><h2 id="仿真结果"><a href="#仿真结果" class="headerlink" title="仿真结果:"></a>仿真结果:</h2><p><img src="http://q8xe5o8a1.bkt.clouddn.com/%E5%AE%9E%E9%AA%8C1.png"></p>
-<h1 id="实验小结"><a href="#实验小结" class="headerlink" title="实验小结:"></a>实验小结:</h1><p>运用动态扫描法会出现鬼影现象，所以代码最后的P0=0xff不能省，一定要注意。仿真原理图上省略链接了很多元器件。实际操作时要注意。</p>
 
                 
             </div>
@@ -665,7 +733,7 @@ uchar dbuf<span class="token punctuation">[</span><span class="token number">4</
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://3082291337.github.io/2020/05/05/51-dan-pian-ji-shu-ma-guan-yi/">https://3082291337.github.io/2020/05/05/51-dan-pian-ji-shu-ma-guan-yi/</a>
+                    <a href="https://3082291337.github.io/posts/6015.html">https://3082291337.github.io/posts/6015.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -874,26 +942,24 @@ uchar dbuf<span class="token punctuation">[</span><span class="token number">4</
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/10/51-dan-pian-ji-shu-ma-guan-er/">
+                <a href="/posts/991b.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="51单片机数码管（二）">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="51单片机学习日志（二）">
                         
-                        <span class="card-title">51单片机数码管（二）</span>
+                        <span class="card-title">51单片机学习日志（二）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-前言：本文将上文用到的四位数数码管和之前学习的定时器结合，做一个实验。
-
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-17
                         </span>
                         <span class="publish-author">
                             
@@ -910,30 +976,30 @@ uchar dbuf<span class="token punctuation">[</span><span class="token number">4</
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/26/51-dan-pian-ji-chuan-kou-tong-xin/">
+                <a href="/posts/6015.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="51单片机串行通信">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="51单片机学习日志">
                         
-                        <span class="card-title">51单片机串行通信</span>
+                        <span class="card-title">51单片机学习日志</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-前言：数据通信是指计算机CPU与外部设备之间、计算机与计算机之间的信息交换称之为数据通信。基本通信方式有两种：并行通信和串行通信。本文讲的是串行通信。
+                            一、51单片机定时器1、基本概念：
 
-一、串行通信基础1.1 基本概念数据在单条一位宽的传输线上，一比特接一比特地按顺序传
+
+80C51有两个计数器T0和T1，每个计数器都是由两个8位的RAM 单元组成的，即每个计数器都是16 位的计数器，最大的计数容量是2的16次方=65536，记住是从0-65535。定时器的本质也是计数
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-11
                             </span>
                         <span class="publish-author">
                             
@@ -943,6 +1009,7 @@ uchar dbuf<span class="token punctuation">[</span><span class="token number">4</
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
