@@ -29,8 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -636,74 +638,74 @@
 <p>（3）COMTool</p>
 <h2 id="3、原理图"><a href="#3、原理图" class="headerlink" title="3、原理图"></a>3、原理图</h2><p><img src="http://q8xe5o8a1.bkt.clouddn.com/QQ%E6%88%AA%E5%9B%BE20200426155902.png"></p>
 <h2 id="4、具体调试步骤"><a href="#4、具体调试步骤" class="headerlink" title="4、具体调试步骤"></a>4、具体调试步骤</h2><p>首先通过vspd创建串口对，然后将keil生成的hex文件导入protues，注意配置com时的波特率应与代码的一致。接着进行仿真，在COMTool上打开对应的串口，最后在COMTool上发送‘a’或‘b’或‘c’，然后观察实验现象。</p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre><code class="c">//查询法
-#include&lt;reg51.h&gt;
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">//查询法</span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;reg51.h></span></span>
 
-sbit LED =P1^0;
-unsigned char receiveData ;//定义一个接收数据的变量
+sbit LED <span class="token operator">=</span>P1<span class="token operator">^</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">unsigned</span> <span class="token keyword">char</span> receiveData <span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定义一个接收数据的变量</span>
 
-void UsartInit()//串行口初始化
-&#123;
-    TMOD = 0X20;//定时器T1工作方式二
-    TH1  = 0XFD;//波特率9600,晶振为11.0592MHZ
-    TL1  = 0XFD;
+<span class="token keyword">void</span> <span class="token function">UsartInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//串行口初始化</span>
+<span class="token punctuation">{</span>
+    TMOD <span class="token operator">=</span> <span class="token number">0X20</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定时器T1工作方式二</span>
+    TH1  <span class="token operator">=</span> <span class="token number">0XFD</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//波特率9600,晶振为11.0592MHZ</span>
+    TL1  <span class="token operator">=</span> <span class="token number">0XFD</span><span class="token punctuation">;</span>
  
-    TR1 = 1;
-    SCON = 0X50;//工作方式一
+    TR1 <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    SCON <span class="token operator">=</span> <span class="token number">0X50</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//工作方式一</span>
 
-&#125;
-void TimerInit()//定时0.25ms
-&#123;
-    TMOD|=0X02;//定时器T0工作方式二
-    TH0=0x6;
-    TL0=0x6;
-    ET0 =1;
-    EA =1;//打开定时器总中断
-    TR0=1;
-&#125;
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//定时0.25ms</span>
+<span class="token punctuation">{</span>
+    TMOD<span class="token operator">|</span><span class="token operator">=</span><span class="token number">0X02</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//定时器T0工作方式二</span>
+    TH0<span class="token operator">=</span><span class="token number">0x6</span><span class="token punctuation">;</span>
+    TL0<span class="token operator">=</span><span class="token number">0x6</span><span class="token punctuation">;</span>
+    ET0 <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    EA <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//打开定时器总中断</span>
+    TR0<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void main(void)
-&#123; 
-    LED = 1;//小灯的初始状态
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> 
+    LED <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//小灯的初始状态</span>
     
-    UsartInit();//调用串口
-    while(1)
-    &#123; while(RI==0);//等待接收完一个字符
-        RI=0;//清除接受标志
-        receiveData =SBUF;//将接收寄存器的数据取出来
-        TimerInit();//调用定时器T0定时
+    <span class="token function">UsartInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用串口</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span> <span class="token keyword">while</span><span class="token punctuation">(</span>RI<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//等待接收完一个字符</span>
+        RI<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//清除接受标志</span>
+        receiveData <span class="token operator">=</span>SBUF<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将接收寄存器的数据取出来</span>
+        <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//调用定时器T0定时</span>
         
-  &#125;
-&#125;
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-void Tmier() interrupt 1 //定时器T0中断
-&#123;        
-    static unsigned int i = 0;
-    static unsigned int j = 0;
-    if (receiveData == &#39;a&#39;)//选择闪烁模式
-            &#123; 
-                i++;
-            if(i==4000)
-                &#123;
-                    LED =~LED;
-                    i = 0;
-                &#125;
-            &#125;
-    else if(receiveData == &#39;b&#39;)
-            &#123;    
-                j++;
-                if(j==8000)
-                &#123;
-                    LED =~LED;
-                    j = 0;
-                &#125;
-            &#125;
-    else if (receiveData == &#39;c&#39;)
-            &#123;
-                TR0 = 0;
-                LED = 1;
-            &#125;
-&#125;
+<span class="token keyword">void</span> <span class="token function">Tmier</span><span class="token punctuation">(</span><span class="token punctuation">)</span> interrupt <span class="token number">1</span> <span class="token comment" spellcheck="true">//定时器T0中断</span>
+<span class="token punctuation">{</span>        
+    <span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>receiveData <span class="token operator">==</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//选择闪烁模式</span>
+            <span class="token punctuation">{</span> 
+                i<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">4000</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    LED <span class="token operator">=</span><span class="token operator">~</span>LED<span class="token punctuation">;</span>
+                    i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>receiveData <span class="token operator">==</span> <span class="token string">'b'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>    
+                j<span class="token operator">++</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>j<span class="token operator">==</span><span class="token number">8000</span><span class="token punctuation">)</span>
+                <span class="token punctuation">{</span>
+                    LED <span class="token operator">=</span><span class="token operator">~</span>LED<span class="token punctuation">;</span>
+                    j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>receiveData <span class="token operator">==</span> <span class="token string">'c'</span><span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                TR0 <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                LED <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
         
         
 
@@ -1247,7 +1249,7 @@ void Tmier() interrupt 1 //定时器T0中断
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.9k</span>&nbsp;字
+                class="white-color">4.8k</span>&nbsp;字
             
             
             

@@ -29,8 +29,10 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Cyin" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 
@@ -599,7 +601,7 @@
 </blockquote>
 </li>
 </ul>
-<p></br></br><br>2、<strong>相关寄存器</strong>：</p>
+<p><br><br><br>2、<strong>相关寄存器</strong>：</p>
 <span id="more"></span>
 <ul>
 <li>1：<strong>定时/计数器方式寄存器TMOD（只能段寻址）</strong></li>
@@ -645,7 +647,7 @@
 <td>方式3，仅适用于T0，分为两个8位计数器，T1停止工作</td>
 </tr>
 </tbody></table>
-<p></br></br></p>
+<p><br><br></p>
 <ul>
 <li><p>2<br>： <strong>定时器/控制器控制寄存器TCON（可以位寻址）</strong></p>
 <p>  IT0：外部中断0触发方式控制位</p>
@@ -659,7 +661,7 @@
 </li>
 </ul>
 <p>TR1：定时器1运行控制位。</p>
-<p>由软件清0关闭定时器1。当GATE=1，且INIT为高电平时，TR1置1启动 定时器1；当GATE=0时，TR1置1启动定时器1。<br>TR0—定时器0运行控制位，其功能及操作方法同TR1。<br></br></br></br></br></p>
+<p>由软件清0关闭定时器1。当GATE=1，且INIT为高电平时，TR1置1启动 定时器1；当GATE=0时，TR1置1启动定时器1。<br>TR0—定时器0运行控制位，其功能及操作方法同TR1。<br><br><br><br><br></p>
 <h2 id="80C51单片机-LED定时1s交替闪烁"><a href="#80C51单片机-LED定时1s交替闪烁" class="headerlink" title="80C51单片机-LED定时1s交替闪烁"></a>80C51单片机-LED定时1s交替闪烁</h2><ul>
 <li><p><em>定时之前我们需要知道定时器的使用方法以及如何计算出我们需要定时时间的参数。</em></p>
 <p>1 、<strong>定时器的使用方法</strong>：</p>
@@ -671,39 +673,39 @@
 </li>
 </ul>
 <p><a target="_blank" rel="noopener" href="http://www.elecfans.com/dianzichangshi/20171109577456.html">参考链接</a></p>
-<h3 id="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"><a href="#程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。" class="headerlink" title="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"></a><strong>程序功能</strong>：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。</h3></br>
+<h3 id="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"><a href="#程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。" class="headerlink" title="程序功能：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。"></a><strong>程序功能</strong>：实现每间隔1秒，LED灯与上次的状态相反，LED以该规律闪烁。</h3><br>
 
-<h3 id="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"><a href="#逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。" class="headerlink" title="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"></a><strong>逻辑思路</strong>：通过定时1ms，循环1000次从而达到定时1s的功能。</h3><p></br></br></br></p>
-<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a><strong>代码</strong>：</h2><pre><code class="c">#include&lt;reg51.h&gt;
-sbit led =P1^0;
+<h3 id="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"><a href="#逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。" class="headerlink" title="逻辑思路：通过定时1ms，循环1000次从而达到定时1s的功能。"></a><strong>逻辑思路</strong>：通过定时1ms，循环1000次从而达到定时1s的功能。</h3><p><br><br><br></p>
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a><strong>代码</strong>：</h2><pre class=" language-c"><code class="language-c"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;reg51.h></span></span>
+sbit led <span class="token operator">=</span>P1<span class="token operator">^</span><span class="token number">0</span><span class="token punctuation">;</span>
 
-void TimerInit()//定时1ms
-&#123;
-    TMOD|=0X01;//选择T0工作方式
-    TH0=(65536-1000)/256;//给TH0、TL0赋初值
-    TL0=(65536-1000)%256;
-    ET0 =1;
-    EA =1;
-    TR0=1;
-&#125;
+<span class="token keyword">void</span> <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//定时1ms</span>
+<span class="token punctuation">{</span>
+    TMOD<span class="token operator">|</span><span class="token operator">=</span><span class="token number">0X01</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//选择T0工作方式</span>
+    TH0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">256</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//给TH0、TL0赋初值</span>
+    TL0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">256</span><span class="token punctuation">;</span>
+    ET0 <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    EA <span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+    TR0<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void main()
-&#123;  
-    TimerInit();
-    while(1);
-&#125;
-void Tmier() interrupt 1//中断
-&#123;
-    static unsigned int i;
-    TH0=(65536-1000)/256;//重新给TH0、TL0赋初值
-    TL0=(65536-1000)%256;
-    i++;
-    if(i==1000) //循环1000次达到定时1s的效果
-    &#123;
-        led =~led;//灯的状态取反
-        i =0;
-    &#125;
-&#125;
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  
+    <span class="token function">TimerInit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">Tmier</span><span class="token punctuation">(</span><span class="token punctuation">)</span> interrupt <span class="token number">1</span><span class="token comment" spellcheck="true">//中断</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">static</span> <span class="token keyword">unsigned</span> <span class="token keyword">int</span> i<span class="token punctuation">;</span>
+    TH0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">256</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//重新给TH0、TL0赋初值</span>
+    TL0<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">65536</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">256</span><span class="token punctuation">;</span>
+    i<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>i<span class="token operator">==</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//循环1000次达到定时1s的效果</span>
+    <span class="token punctuation">{</span>
+        led <span class="token operator">=</span><span class="token operator">~</span>led<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//灯的状态取反</span>
+        i <span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
                 
@@ -1244,7 +1246,7 @@ void Tmier() interrupt 1//中断
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.9k</span>&nbsp;字
+                class="white-color">4.8k</span>&nbsp;字
             
             
             
